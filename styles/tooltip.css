@@ -1,0 +1,59 @@
+div.tippy-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  font-size: 0.9rem;
+  cursor: default;
+  user-select: none;
+  padding: 1px;
+  background-color: black;
+  color: white;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+div.tippy-box svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  color: white !important;
+  fill: white !important;
+}
+
+div.tippy-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+div.tippy-box[data-placement^='top'] > div.tippy-arrow::before {
+  border-top-color: #000;
+}
+
+div.tippy-box[data-animation='default'][data-state='hidden'] {
+  opacity: 0;
+  transform: scale(0.9) translateY(5px);
+}
+
+div.tippy-box[data-animation='default'][data-state='visible'] {
+  opacity: 1;
+  transform: scale(1) translateY(0px);
+}
+
+a.discord {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+a.discord:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 0.2px;
+}

@@ -1,0 +1,837 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  list-style: none;
+}
+
+* body, * html {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  font-family: 'SF Pro Medium';
+  background-color: var(--background-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: var(--main-text-color);
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+}
+
+* body a.spotify-time, * html a.spotify-time {
+  font-size: 0.6rem;
+  letter-spacing: unset;
+}
+
+* body img.emoji, * html img.emoji {
+  width: 12px;
+  height: 12px;
+  margin-right: 1px;
+  margin-left: 1px;
+}
+
+* body projects, * html projects {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1rem;
+  gap: 20px;
+}
+
+* body project, * html project {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 49%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  background-color: var(--tertiary-background-color);
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  padding: 20px;
+  border-radius: 5px;
+  gap: 10px;
+}
+
+* body project project-image, * html project project-image {
+  width: 100%;
+  height: 240px;
+  border-radius: 5px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+* body project project-description, * html project project-description {
+  font-size: 1.1rem;
+}
+
+* body project project-title, * html project project-title, * body project project-image {
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--secondary-text-color);
+}
+
+* body project project-title:hover, * html project project-title:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+* body github, * html github {
+  /* flex-basis: content;
+      flex-wrap: wrap;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;*/
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(245px, 4fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(245px, 4fr));
+  grid-gap: 26px;
+  width: 100%;
+  height: 100%;
+}
+
+* body github[loading], * html github[loading] {
+  background-color: var(--tertiary-background-color);
+  border-radius: 10px;
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+}
+
+* body github repo, * html github repo {
+  cursor: pointer;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.8rem;
+  background-color: var(--tertiary-background-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+* body github repo:hover, * html github repo:hover {
+  -webkit-filter: brightness(0.96);
+          filter: brightness(0.96);
+}
+
+* body github repo repo-title, * html github repo repo-title {
+  font-size: 1.1rem;
+  color: var(--secondary-text-color);
+  margin-bottom: 5px;
+  overflow-wrap: anywhere;
+}
+
+* body github repo description, * html github repo description {
+  font-size: 0.8rem;
+  color: var(--tertiary-text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+* body github repo p, * html github repo p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+* body github repo p a svg, * html github repo p a svg {
+  width: 14px;
+  height: 14px;
+  margin-right: 1px;
+  margin-left: 1px;
+}
+
+* body div.main, * html div.main {
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 55%;
+  min-height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+* body div.main content, * html div.main content {
+  margin-top: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  height: 100%;
+  width: 100%;
+}
+
+* body div.main content top, * html div.main content top {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+* body div.main content top div-img.avatar, * html div.main content top div-img.avatar {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  width: 128px;
+  height: 128px;
+  background-color: var(--tertiary-background-color);
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+* body div.main content top div-img[loading], * html div.main content top div-img[loading] {
+  background-color: var(--tertiary-background-color);
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+}
+
+* body div.main content top div-bio, * html div.main content top div-bio {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  left: 25px;
+}
+
+* body div.main content top div-bio bio-title, * html div.main content top div-bio bio-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 3.5px;
+}
+
+* body div.main content top div-bio bio-title img, * html div.main content top div-bio bio-title img {
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+}
+
+* body div.main content top div-bio bio-text, * html div.main content top div-bio bio-text {
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+* body div.main content bottom, * html div.main content bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+* body div.main content bottom hr, * html div.main content bottom hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: none;
+  height: 1px;
+  background-color: var(--tertiary-background-color);
+}
+
+* body div.main content bottom ul, * html div.main content bottom ul {
+  margin-left: 10px;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+* body div.main content bottom ul li, * html div.main content bottom ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  margin-bottom: 10px;
+}
+
+* body div.main content bottom ul li spotify, * html div.main content bottom ul li spotify {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: default;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+* body div.main content bottom ul li spotify logo, * html div.main content bottom ul li spotify logo {
+  width: 16px;
+  height: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 100%;
+}
+
+* body div.main content bottom ul li spotify logo svg, * html div.main content bottom ul li spotify logo svg {
+  width: 16px;
+  height: 16px;
+  color: var(--secondary-color);
+}
+
+* body div.main content bottom ul li spotify logo svg[loading], * html div.main content bottom ul li spotify logo svg[loading] {
+  color: var(--tertiary-background-color);
+  -webkit-animation: loading-svg 1s infinite;
+          animation: loading-svg 1s infinite;
+}
+
+* body div.main content bottom ul li spotify p, * html div.main content bottom ul li spotify p {
+  margin-left: 7px;
+  width: 205px;
+  border-radius: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+* body div.main content bottom ul li spotify p[loading], * html div.main content bottom ul li spotify p[loading] {
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+}
+
+* body div.main content bottom ul li location, * html div.main content bottom ul li location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  right: 2px;
+}
+
+* body div.main content bottom ul li location[loading], * html div.main content bottom ul li location[loading] {
+  right: -1px;
+}
+
+* body div.main content bottom ul li location[loading] a, * html div.main content bottom ul li location[loading] a {
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+  width: 140px;
+  border-radius: 7px;
+}
+
+* body div.main content bottom ul li location[loading] span, * html div.main content bottom ul li location[loading] span {
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  margin-right: 6px;
+}
+
+* body div.main content bottom ul li location span, * html div.main content bottom ul li location span {
+  font-size: 20px;
+  color: var(--secondary-color);
+  margin-right: 5px;
+}
+
+* body div.main content bottom ul li links, * html div.main content bottom ul li links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  right: 2px;
+}
+
+* body div.main content bottom ul li links a, * html div.main content bottom ul li links a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0 10px;
+}
+
+* body div.main content bottom ul li links a span, * html div.main content bottom ul li links a span {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--tertiary-background-color);
+  border-radius: 100%;
+  padding: 2px;
+}
+
+* body div.main content bottom ul li links a span svg, * html div.main content bottom ul li links a span svg {
+  width: 20px;
+  height: 20px;
+  color: var(--secondary-color);
+}
+
+* body div.main content bottom ul li links[loading], * html div.main content bottom ul li links[loading] {
+  right: -1px;
+}
+
+* body div.main content bottom ul li links[loading] a, * html div.main content bottom ul li links[loading] a {
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+  width: 140px;
+  border-radius: 7px;
+}
+
+* body div.main content bottom ul li status, * html div.main content bottom ul li status {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: default;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+* body div.main content bottom ul li status span, * html div.main content bottom ul li status span {
+  -webkit-animation: pulse 2s infinite;
+          animation: pulse 2s infinite;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--tertiary-background-color);
+  margin-left: 2.5px;
+}
+
+* body div.main content bottom ul li status p, * html div.main content bottom ul li status p {
+  margin-left: 10px;
+  width: 160px;
+  border-radius: 7px;
+}
+
+* body div.main content bottom ul li status p[loading], * html div.main content bottom ul li status p[loading] {
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+}
+
+* body div.main hr.pad, * html div.main hr.pad {
+  width: 100%;
+  height: 45px;
+  border: none;
+  background-color: var(--background-color);
+}
+
+* body div.main block-content, * html div.main block-content {
+  position: relative;
+  margin-top: 15px;
+  margin-left: 2px;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+* body div.main block-content:empty, * html div.main block-content:empty {
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+  border-radius: 10px;
+}
+
+* body div.main blocks, * html div.main blocks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: baseline;
+      -ms-flex-pack: baseline;
+          justify-content: baseline;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0 25px;
+}
+
+* body div.main blocks div.active block-title, * html div.main blocks div.active block-title {
+  background-color: var(--tertiary-background-color);
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: relative;
+  cursor: default;
+}
+
+* body div.main blocks div.active block-title::before, * html div.main blocks div.active block-title::before {
+  width: 75%;
+}
+
+* body div.main blocks div block-title, * html div.main blocks div block-title {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin-bottom: 3.5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  flex-direction: row;
+  padding: 6px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  -webkit-transition: background 0.2s ease;
+  transition: background 0.2s ease;
+}
+
+* body div.main blocks div block-title svg, * html div.main blocks div block-title svg {
+  font-size: 20px;
+}
+
+* body div.main blocks div block-title::before, * html div.main blocks div block-title::before {
+  -webkit-transition: width 0.3s ease;
+  transition: width 0.3s ease;
+  position: absolute;
+  content: '';
+  border-bottom: 2px solid var(--tertiary-background-color);
+  width: 0%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: -5px;
+  left: 50%;
+}
+
+* body div.main blocks div block-title:hover, * html div.main blocks div block-title:hover {
+  background-color: var(--tertiary-background-color);
+}
+
+* body div.main blocks div extent, * html div.main blocks div extent {
+  display: none;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    background-color: var(--tertiary-background-color);
+  }
+  50% {
+    background-color: var(--tertiary-filter-background-color);
+  }
+  100% {
+    background-color: var(--tertiary-background-color);
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-color: var(--tertiary-background-color);
+  }
+  50% {
+    background-color: var(--tertiary-filter-background-color);
+  }
+  100% {
+    background-color: var(--tertiary-background-color);
+  }
+}
+
+@-webkit-keyframes loading-svg {
+  0% {
+    color: var(--tertiary-background-color);
+  }
+  50% {
+    color: var(--tertiary-filter-background-color);
+  }
+  100% {
+    color: var(--tertiary-background-color);
+  }
+}
+
+@keyframes loading-svg {
+  0% {
+    color: var(--tertiary-background-color);
+  }
+  50% {
+    color: var(--tertiary-filter-background-color);
+  }
+  100% {
+    color: var(--tertiary-background-color);
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 var(--tertiary-background-color-opacity);
+            box-shadow: 0 0 0 0 var(--tertiary-background-color-opacity);
+  }
+  70% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-box-shadow: 0 0 0 7px rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 7px rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 var(--tertiary-background-color-opacity);
+            box-shadow: 0 0 0 0 var(--tertiary-background-color-opacity);
+  }
+  70% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-box-shadow: 0 0 0 7px rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 7px rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  body projects, html projects {
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  body projects project, html projects project {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body div.main, html div.main {
+    width: 75%;
+  }
+  body top, html top {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+  }
+  body top div-bio, html top div-bio {
+    left: 0 !important;
+  }
+  body top div-img, html top div-img {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  body div.main, html div.main {
+    width: 90%;
+  }
+  body top div-bio bio-title, html top div-bio bio-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.2rem !important;
+  }
+  body top div-bio bio-text, html top div-bio bio-text {
+    font-size: 0.9rem !important;
+  }
+  body bottom ul li, html bottom ul li {
+    font-size: 0.9rem;
+  }
+}
+
+[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+/*# sourceMappingURL=style.css.map */

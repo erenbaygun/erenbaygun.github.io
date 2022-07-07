@@ -1,0 +1,40 @@
+body.light {
+  --background-color: #fdfdfd;
+  --main-text-color: rgb(14, 14, 14);
+  --secondary-text-color: #444444;
+  --tertiary-text-color: #666;
+  --secondary-color: #c2c2c2;
+  --tertiary-background-color: #ededed;
+  --tertiary-filter-background-color: #e2e2e2;
+  --tertiary-background-color-opacity: #e2e2e293;
+}
+
+body.dark {
+  --background-color: #121212;
+  --main-text-color: rgb(220 220 220);
+  --secondary-text-color: #a9a9a9;
+  --tertiary-text-color: ##adadad;
+  --secondary-color: #313131;
+  --tertiary-background-color: #1a1a1a;
+  --tertiary-filter-background-color: #272727;
+  --tertiary-background-color-opacity: #27272767;
+}
+
+body.dark div.tippy-box {
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 5px 0 rgba(255, 255, 255, 0.14), 0 1px 10px 0 rgba(255, 255, 255, 0.12);
+}
+
+body.dark div.tippy-box svg {
+  color: black !important;
+  fill: black !important;
+}
+
+body.dark div.tippy-box[data-placement^='top'] > div.tippy-arrow::before {
+  border-top-color: white;
+}
+
+body.dark a.discord {
+  color: black;
+}

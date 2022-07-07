@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanctus | Eren</title>
+
+  <link rel="shortcut icon" href="./favicon.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="./styles/theme.css">
+  <link rel="stylesheet" href="./styles/tooltip.css">
+  <link rel="stylesheet" href="./styles/fonts.css">
+  <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body class="light">
+
+  <div class="main">
+    <hr class="pad">
+
+    <content>
+      <top>
+        <div-img class="avatar" loading>&thinsp;</div-img>
+        <div-bio>
+          <bio-title>Heyy selamlar, ben Sanctus👋</bio-title>
+          <bio-text>Gerçek adım Eren ama internette insanlar beni Sanctus olarak bilir. 2 yıldan uzun süredir discord botları geliştiriyorum. Kodlamanın mantığını ve yapısını seviyorum. Her zaman verimli ve temiz kod yazmaya çalışıyorum. Discord botlarının yanında web geliştiriciliği de öğreniyorum.</bio-text>
+        </div-bio>
+      </top>
+      <bottom>
+        <ul>
+          <li>
+            <status><span>&thinsp;</span> <p loading>&thinsp;</p></status>
+          </li>
+          <li>
+            <spotify>
+              <logo>
+                <svg loading xmlns="http://www.w3.org/2000/svg" height="168px" width="168px" version="1.1" viewBox="0 0 168 168">
+                  <path fill="green" d="m83.996 0.277c-46.249 0-83.743 37.493-83.743 83.742 0 46.251 37.494 83.741 83.743 83.741 46.254 0 83.744-37.49 83.744-83.741 0-46.246-37.49-83.738-83.745-83.738l0.001-0.004zm38.404 120.78c-1.5 2.46-4.72 3.24-7.18 1.73-19.662-12.01-44.414-14.73-73.564-8.07-2.809 0.64-5.609-1.12-6.249-3.93-0.643-2.81 1.11-5.61 3.926-6.25 31.9-7.291 59.263-4.15 81.337 9.34 2.46 1.51 3.24 4.72 1.73 7.18zm10.25-22.805c-1.89 3.075-5.91 4.045-8.98 2.155-22.51-13.839-56.823-17.846-83.448-9.764-3.453 1.043-7.1-0.903-8.148-4.35-1.04-3.453 0.907-7.093 4.354-8.143 30.413-9.228 68.222-4.758 94.072 11.127 3.07 1.89 4.04 5.91 2.15 8.976v-0.001zm0.88-23.744c-26.99-16.031-71.52-17.505-97.289-9.684-4.138 1.255-8.514-1.081-9.768-5.219-1.254-4.14 1.08-8.513 5.221-9.771 29.581-8.98 78.756-7.245 109.83 11.202 3.73 2.209 4.95 7.016 2.74 10.733-2.2 3.722-7.02 4.949-10.73 2.739z"/>
+                </svg>
+              </logo>
+              <p loading>&thinsp;</p>
+            </spotify>
+          </li>
+          <li>
+            <location loading>
+              <span class="material-icons"></span>
+              <a>&thinsp;</a>
+            </location>
+          </li>
+          <li>
+            <links loading>
+              <a>&thinsp;</a>
+            </links>
+          </li>
+        </ul>
+
+        <hr>
+
+        <blocks>
+          <div class="active" onclick="changeBlock(0)" id="0">
+            <block-title>Projelerim</block-title>
+            <extent>
+              <projects>
+
+                <project style="border-left: 5px solid var(--secondary-color);">
+                  <project-title onclick="window.open('https://discord.gg/MEdUDMSTMx', '_blank')">Aeri</project-title>
+                  <project-description>Aeri, geliştirdiğim ilk botlardan biriydi. Uzun süre önce geliştirdiğim bu bot yüz binlerce kullanıcıya hizmet verdi. Ne yazık ki 21 Haziran 2021'de botu kapattım ve kendi kişisel projelerime yöneldim. Şimdi ise Aeri için yeni şeyler düşünüyorum. 2022 yılı içerisinde Aeri çok daha gelişmiş sistemlerle tekrar hizmete başlayacak. Yeniliklerden haberdar olmak için discord sunucuma katılabilirsiniz.</project-description>
+                  <project-image style="background-image: url(https://cdn.discordapp.com/app-icons/764793428520861706/f3fc9721a73a7bd6984134c41c7cb775.webp?size=512)", onclick="window.open('https://discord.gg/MEdUDMSTMx', '_blank')">&thinsp;</project>                
+                </project>
+
+              </projects>
+            </extent>
+          </div>
+          <div onclick="changeBlock(1)" id="1">
+            <block-title>GitHub</block-title>
+            <extent>
+              <github loading>&thinsp;</github>
+            </extent>
+          </div>
+          <div onclick="window.open('https://github.com/ErenBaygun/sanctus.github.io', '_blank')">
+            <block-title><span class="material-icons" tippy="Bu website GitHub'da açık kaynak kodlu!">link</span></block-title>
+          </div>
+          <div onclick="changeTheme()">
+            <block-title><span class="material-icons" tippy="Temayı değiş">dark_mode</span></block-title>
+          </div>
+        </blocks>
+
+        <block-content></block-content>
+        
+      </bottom>
+    </content>
+
+  </div>
+
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.3.2/moment-duration-format.min.js"></script>
+  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>

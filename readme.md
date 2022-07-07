@@ -1,0 +1,1 @@
+Bu site, [chimpdev](https://github.com/chimpdev)'e ait [chimpdev.github.io](https://github.com/chimpdev/chimpdev.github.io) sitesinin kendimce düzenlemiş olduğum halidir.
