@@ -37,7 +37,7 @@ twemoji.parse(document.body);
 
 const properties = {
   api: {
-    baseURL: 'https://ravencode.live/api/v1'
+    baseURL: 'https://ravencode.live/api/v2'
   },
   github_api: {
     baseURL: 'https://api.github.com'
