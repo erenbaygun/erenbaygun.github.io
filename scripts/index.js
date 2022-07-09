@@ -1,3 +1,6 @@
+const lanyardJS = window.lanyard;
+const sanctusId = "513752527989374976";
+
 function setupTheme() {
   const theme = localStorage.getItem('theme');
   if (!theme) {
@@ -37,7 +40,7 @@ twemoji.parse(document.body);
 
 const properties = {
   api: {
-    baseURL: 'https://ravencode.live/api/v2'
+    baseURL: 'https://api.lanyard.rest/v1'
   },
   github_api: {
     baseURL: 'https://api.github.com'
@@ -51,26 +54,24 @@ const properties = {
 }
 
 const getUser = async () => {
-  const res = await fetch(properties.api.baseURL + '/users/513752527989374976/embed', { method: 'POST' });
-  return await res.json();
+  const res = await lanyardJS({ userId: sanctusId });
+  return res;
 };
 
 const parseStatus = data => {
   return {
-    text: data.status.replace('online', 'Çevrimiçi').replace('idle', 'Boşta').replace('dnd', 'Rahatsız etmeyin').replace('offline', 'Çevrimdışı'),
-    color: data.status.replace('online', 'rgb(69 189 69)').replace('idle', '#ffa500').replace('dnd', 'rgb(202, 71, 71)').replace('offline', 'var(--secondary-color)')
+    text: data.discord_status.replace('online', 'Çevrimiçi').replace('idle', 'Boşta').replace('dnd', 'Rahatsız etmeyin').replace('offline', 'Çevrimdışı'),
+    color: data.discord_status.replace('online', 'rgb(69 189 69)').replace('idle', '#ffa500').replace('dnd', 'rgb(202, 71, 71)').replace('offline', 'var(--secondary-color)')
   };
 };
 
-const parseActivity = data => {
-  return data.activity ? `"${data.activity.details}" Dinliyor <a class="spotify-time">${data.activity.current} ─ ${data.activity.end}</a>` : 'Şu an bir şey dinlemiyor.';
+const parseActivity = (data, activityData) => {
+  return activityData !== undefined ? `"${data.spotify.song}" Dinliyor <a class="spotify-time">${activityData.current} ─ ${activityData.end}</a>` : 'Şu an bir şey dinlemiyor.';
 };
 
-getUser().then(reloadUser);
-
-function reloadUser(data) {
+const reloadUser = async (data) => {
   clearInterval(currentInterval);
-  $('div-img.avatar').css('background-image', `url(${data.avatarURL})`).removeAttr('loading');
+  $('div-img.avatar').css('background-image', `url(https://cdn.discordapp.com/avatars/${sanctusId}/${data.discord_user.avatar}.gif?size=512)`).removeAttr('loading');
   $('status > p').text(parseStatus(data).text).removeAttr('loading').css('width', 'max-content');
   $('status > span').css('background-color', parseStatus(data).color);
   $('status').attr('tippy-interactive', 'true').attr('tippy', `
@@ -86,11 +87,11 @@ function reloadUser(data) {
   </svg>
   <a class="discord" href="https://discord.gg/MEdUDMSTMx" target="_blank">Discord</a>`);
 
-  if (data.activity) {
+  if (data.listening_to_spotify === true) {
     $('spotify').attr('tippy', `<svg xmlns="http://www.w3.org/2000/svg" height="168px" width="168px" version="1.1" viewBox="0 0 168 168">
     <path d="m83.996 0.277c-46.249 0-83.743 37.493-83.743 83.742 0 46.251 37.494 83.741 83.743 83.741 46.254 0 83.744-37.49 83.744-83.741 0-46.246-37.49-83.738-83.745-83.738l0.001-0.004zm38.404 120.78c-1.5 2.46-4.72 3.24-7.18 1.73-19.662-12.01-44.414-14.73-73.564-8.07-2.809 0.64-5.609-1.12-6.249-3.93-0.643-2.81 1.11-5.61 3.926-6.25 31.9-7.291 59.263-4.15 81.337 9.34 2.46 1.51 3.24 4.72 1.73 7.18zm10.25-22.805c-1.89 3.075-5.91 4.045-8.98 2.155-22.51-13.839-56.823-17.846-83.448-9.764-3.453 1.043-7.1-0.903-8.148-4.35-1.04-3.453 0.907-7.093 4.354-8.143 30.413-9.228 68.222-4.758 94.072 11.127 3.07 1.89 4.04 5.91 2.15 8.976v-0.001zm0.88-23.744c-26.99-16.031-71.52-17.505-97.289-9.684-4.138 1.255-8.514-1.081-9.768-5.219-1.254-4.14 1.08-8.513 5.221-9.771 29.581-8.98 78.756-7.245 109.83 11.202 3.73 2.209 4.95 7.016 2.74 10.733-2.2 3.722-7.02 4.949-10.73 2.739z"/>
   </svg>
-  ${data.activity.state.replace(/;/g, ',')} tarafından`);
+  ${data.spotify.artist.replace(/;/g, ',')} tarafından`);
     activityTimer(data);
   } else {
     $('spotify > logo').html(`<svg loading xmlns="http://www.w3.org/2000/svg" height="168px" width="168px" version="1.1" viewBox="0 0 168 168">
@@ -100,11 +101,15 @@ function reloadUser(data) {
     document.querySelector('spotify')._tippy?.destroy();
   };
 
-  $('spotify > p').html(parseActivity(data)).removeAttr('loading').css('width', 'max-content');
+  let activityData = await getActivityData(data)
+
+  $('spotify > p').html(parseActivity(data, activityData)).removeAttr('loading').css('width', 'max-content');
   $('spotify > logo > svg').removeAttr('loading');
   reloadTippys();
   return data;
 };
+
+getUser().then(reloadUser);
 
 function reloadTippys() {
   document.querySelectorAll('[tippy]').forEach(element => {
@@ -211,31 +216,22 @@ function loadIcons() {
   reloadTippys();
 };
 
+
 function activityTimer(data) {
-  var interval = setInterval(() => {
-    data.activity.current = incrementTime(data.activity.current);
-    if (data.activity.current == data.activity.end) {
-      const newData = reloadUser(newData);
-      if (!newData?.activity) $('spotify > logo').html(`<svg xmlns="http://www.w3.org/2000/svg" height="168px" width="168px" version="1.1" viewBox="0 0 168 168">
+  let activityData
+
+  var interval = setInterval(async () => {
+    activityData = await getActivityData(data)
+
+    if (Math.floor(Date.now() / 1000) === Math.floor(data.spotify.timestamps.end / 1000)) {
+      const newData = reloadUser(data)
+      if (!newData?.listening_to_spotify) $('spotify > logo').html(`<svg xmlns="http://www.w3.org/2000/svg" height="168px" width="168px" version="1.1" viewBox="0 0 168 168">
       <path fill="green" d="m83.996 0.277c-46.249 0-83.743 37.493-83.743 83.742 0 46.251 37.494 83.741 83.743 83.741 46.254 0 83.744-37.49 83.744-83.741 0-46.246-37.49-83.738-83.745-83.738l0.001-0.004zm38.404 120.78c-1.5 2.46-4.72 3.24-7.18 1.73-19.662-12.01-44.414-14.73-73.564-8.07-2.809 0.64-5.609-1.12-6.249-3.93-0.643-2.81 1.11-5.61 3.926-6.25 31.9-7.291 59.263-4.15 81.337 9.34 2.46 1.51 3.24 4.72 1.73 7.18zm10.25-22.805c-1.89 3.075-5.91 4.045-8.98 2.155-22.51-13.839-56.823-17.846-83.448-9.764-3.453 1.043-7.1-0.903-8.148-4.35-1.04-3.453 0.907-7.093 4.354-8.143 30.413-9.228 68.222-4.758 94.072 11.127 3.07 1.89 4.04 5.91 2.15 8.976v-0.001zm0.88-23.744c-26.99-16.031-71.52-17.505-97.289-9.684-4.138 1.255-8.514-1.081-9.768-5.219-1.254-4.14 1.08-8.513 5.221-9.771 29.581-8.98 78.756-7.245 109.83 11.202 3.73 2.209 4.95 7.016 2.74 10.733-2.2 3.722-7.02 4.949-10.73 2.739z"/>
      </svg>`);
-    } else document.querySelector('spotify > p').innerHTML = parseActivity(data);
+    } else document.querySelector('spotify > p').innerHTML = await parseActivity(data, activityData);
   }, 1000);
 
   currentInterval = interval;
-
-  function incrementTime(time) {
-    const [minutes, seconds] = time.split(':');
-    let result;
-
-    if (seconds == 59) result = `${parseInt(minutes) + 1}:00`;
-    else result = `${minutes}:${(parseInt(seconds) + 1) < 10 ? '0' : ''}${parseInt(seconds) + 1}`;
-
-    if (result == data.activity.end) {
-      clearInterval(interval);
-      return data.activity.end;
-    } else return result;
-  };
 };
 
 document.body.onload = () => {
@@ -243,8 +239,27 @@ document.body.onload = () => {
   if (document.querySelector('blocks > div.active').getAttribute('id') == '1') showGithubRepos();
 };
 
-const source = new EventSource(properties.api.baseURL + '/users/513752527989374976/event-source');
-source.addEventListener('message', event => {
-  const data = JSON.parse(event.data);
-  return reloadUser(data);
-});
+setInterval(async () => {
+  const data = await lanyardJS({ userId: sanctusId });
+  reloadUser(data)
+}, 5000);
+
+
+const getActivityData = async (userData) => {
+  if (userData.listening_to_spotify === true) {
+    let activityData
+
+    let currentSeconds = Math.floor(Date.now() - userData.spotify.timestamps.start)
+    let currentDateSecs = Math.floor((currentSeconds / 1000) % 60) < 10 ? '0' + Math.floor((currentSeconds / 1000) % 60) : Math.floor((currentSeconds / 1000) % 60)
+    let currentDate = `${Math.floor((currentSeconds / (1000 * 60)) % 60)}:${currentDateSecs}`
+
+    let endDateSecs = Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / 1000) % 60) < 10 ? '0' + (Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / 1000) % 60)) : Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / 1000) % 60)
+    activityData = await {
+      current: currentDate,
+      end: `${Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / (1000 * 60)) % 60)}:${endDateSecs}`
+    }
+
+    return activityData;
+  }
+  else return
+}
