@@ -157,14 +157,14 @@
 }
 
 * body github repo repo-title, * html github repo repo-title {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: var(--secondary-text-color);
   margin-bottom: 5px;
   overflow-wrap: anywhere;
 }
 
 * body github repo description, * html github repo description {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--tertiary-text-color);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -189,6 +189,14 @@
   height: 14px;
   margin-right: 1px;
   margin-left: 1px;
+}
+
+* body github repo p a, * html github repo p a {
+  width: 14px;
+  height: 14px;
+  margin-right: 210px;
+  margin-left: 1px;
+  margin-bottom: 5px;
 }
 
 * body div.main, * html div.main {
