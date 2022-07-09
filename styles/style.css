@@ -199,6 +199,10 @@
   margin-bottom: 5px;
 }
 
+.lang {
+  margin-left: -200px;
+}
+
 * body div.main, * html div.main {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
