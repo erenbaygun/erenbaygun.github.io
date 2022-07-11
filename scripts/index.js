@@ -198,8 +198,6 @@ function loadIcons() {
     {
       svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title"
       aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <title>Mail</title>
-        <desc>A line styled icon from Orion Icon Library.</desc>
         <path data-name="layer2"
         fill="none" stroke="#a9a9a9" stroke-miterlimit="10" stroke-width="6" d="M2 12l30 29 30-29M42 31.6L62 52M2 52l20-20.4"
         stroke-linejoin="round" stroke-linecap="round"></path>
