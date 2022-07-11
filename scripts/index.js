@@ -217,7 +217,7 @@ function loadIcons() {
   ];
 
   $('links').removeAttr('loading');
-  $('links > a').html(socials.map(social => `<span tippy="${social.tippy}" onclick="window.open('${social.href}')">${social.svg}</span>`));
+  $('links > a').html(socials.map(social => `<a href="${social.href}" target="_blank" rel="noopener noreferrer"><span tippy="${social.tippy}">${social.svg}</span>`));
   reloadTippys();
 };
 
