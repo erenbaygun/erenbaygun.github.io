@@ -1,23 +1,5 @@
 @font-face {
-  font-family: 'SF Pro Regular';
-  font-weight: 400;
-  src: url('../fonts/SFPRODISPLAYREGULAR.OTF');
-}
-
-@font-face {
   font-family: 'SF Pro Medium';
   font-weight: 500;
   src: url('../fonts/SFPRODISPLAYMEDIUM.OTF');
-}
-
-@font-face {
-  font-family: 'SF Pro Bold';
-  font-weight: 600;
-  src: url('../fonts/SFPRODISPLAYBOLD.OTF');
-}
-
-@font-face {
-  font-family: 'SF Pro Black';
-  font-weight: 700;
-  src: url('../fonts/SFPRODISPLAYBLACK.OTF');
 }

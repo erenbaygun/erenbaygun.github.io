@@ -23,6 +23,10 @@
   letter-spacing: 0.1rem;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 * body a.spotify-time, * html a.spotify-time {
   font-size: 0.6rem;
   letter-spacing: unset;

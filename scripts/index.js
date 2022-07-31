@@ -1,5 +1,5 @@
 const lanyardJS = window.lanyard;
-const sanctusId = "513752527989374976";
+const discordId = "513752527989374976";
 
 function setupTheme() {
   const theme = localStorage.getItem('theme');
@@ -55,7 +55,7 @@ const properties = {
 }
 
 const getUser = async () => {
-  const res = await lanyardJS({ userId: sanctusId });
+  const res = await lanyardJS({ userId: discordId });
   return res;
 };
 
@@ -72,7 +72,7 @@ const parseActivity = (data, activityData) => {
 
 const reloadUser = async (data) => {
   clearInterval(currentInterval);
-  $('div-img.avatar').css('background-image', `url(https://cdn.discordapp.com/avatars/${sanctusId}/${data.discord_user.avatar}.gif?size=512)`).removeAttr('loading');
+  $('div-img.avatar').css('background-image', `url(https://cdn.discordapp.com/avatars/${discordId}/${data.discord_user.avatar}.gif?size=512)`).removeAttr('loading');
   $('status > p').text(parseStatus(data).text).removeAttr('loading').css('width', 'max-content');
   $('status > span').css('background-color', parseStatus(data).color);
   $('status').attr('tippy-interactive', 'true').attr('tippy', `
@@ -258,7 +258,7 @@ document.body.onload = () => {
 };
 
 setInterval(async () => {
-  const data = await lanyardJS({ userId: sanctusId });
+  const data = await lanyardJS({ userId: discordId });
   reloadUser(data)
 }, 5000);
 
