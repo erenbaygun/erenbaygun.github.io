@@ -54,6 +54,31 @@ const properties = {
   }
 }
 
+setInterval(async () => {
+  const data = await lanyardJS({ userId: discordId });
+  reloadUser(data)
+}, 5000);
+
+
+const getActivityData = async (userData) => {
+  if (userData.listening_to_spotify === true) {
+    let activityData
+
+    let currentSeconds = Math.floor(Date.now() - userData.spotify.timestamps.start)
+    let currentDateSecs = Math.floor((currentSeconds / 1000) % 60) < 10 ? '0' + Math.floor((currentSeconds / 1000) % 60) : Math.floor((currentSeconds / 1000) % 60)
+    let currentDate = `${Math.floor((currentSeconds / (1000 * 60)) % 60)}:${currentDateSecs}`
+
+    let endDateSecs = Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / 1000) % 60) < 10 ? '0' + (Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / 1000) % 60)) : Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / 1000) % 60)
+    activityData = await {
+      current: currentDate,
+      end: `${Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / (1000 * 60)) % 60)}:${endDateSecs}`
+    }
+
+    return activityData;
+  }
+  else return
+}
+
 const getUser = async () => {
   const res = await lanyardJS({ userId: discordId });
   return res;
@@ -174,6 +199,7 @@ document.head.appendChild(materialIconsElement);
 materialIconsElement.onload = loadIcons;
 
 function loadIcons() {
+
   $('location').removeAttr('loading');
   $('location > a').text('İstanbul, Türkiye');
   $('location > span').text('location_on').css('color', '#ca4747');
@@ -234,6 +260,33 @@ function loadIcons() {
   reloadTippys();
 };
 
+const countSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(202, 71, 71)" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>`
+
+
+const countDownDate = new Date("May 5, 2023 17:00:00").getTime();
+
+function reloadTimer() {
+  let now = new Date().getTime();
+
+  let distance = now - countDownDate;
+
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  let timer = days + ":" + hours + ":" + minutes + ":" + seconds;
+
+  $('counting > a').html(`<a target="_blank" rel="noopener noreferrer"><span>${countSvg} ${timer}</span>`);
+}
+
+let x = setInterval(function () {
+  reloadTimer()
+}, 1000);
+
+$('counting').removeAttr('loading');
+reloadTimer();
+
 
 function activityTimer(data) {
   let activityData
@@ -256,28 +309,3 @@ document.body.onload = () => {
   document.querySelector('block-content').innerHTML = document.querySelector('blocks > div.active').querySelector('extent').innerHTML;
   if (document.querySelector('blocks > div.active').getAttribute('id') == '1') showGithubRepos();
 };
-
-setInterval(async () => {
-  const data = await lanyardJS({ userId: discordId });
-  reloadUser(data)
-}, 5000);
-
-
-const getActivityData = async (userData) => {
-  if (userData.listening_to_spotify === true) {
-    let activityData
-
-    let currentSeconds = Math.floor(Date.now() - userData.spotify.timestamps.start)
-    let currentDateSecs = Math.floor((currentSeconds / 1000) % 60) < 10 ? '0' + Math.floor((currentSeconds / 1000) % 60) : Math.floor((currentSeconds / 1000) % 60)
-    let currentDate = `${Math.floor((currentSeconds / (1000 * 60)) % 60)}:${currentDateSecs}`
-
-    let endDateSecs = Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / 1000) % 60) < 10 ? '0' + (Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / 1000) % 60)) : Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / 1000) % 60)
-    activityData = await {
-      current: currentDate,
-      end: `${Math.floor(((userData.spotify.timestamps.end - userData.spotify.timestamps.start) / (1000 * 60)) % 60)}:${endDateSecs}`
-    }
-
-    return activityData;
-  }
-  else return
-}
