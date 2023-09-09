@@ -275,9 +275,10 @@ function reloadTimer() {
   let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  let timer = days + ":" + hours + ":" + minutes + ":" + seconds;
+  let timer = `${days}:${hours}:${minutes}:${seconds}`
 
   $('counting > a').html(`<a target="_blank" rel="noopener noreferrer"><span>${countSvg} ${timer}</span>`);
+  $('counting > p').text(timer);
 }
 
 let x = setInterval(function () {
