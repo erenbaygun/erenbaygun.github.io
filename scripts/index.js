@@ -204,6 +204,9 @@ function loadIcons() {
   $('location > a').text('İstanbul, Türkiye');
   $('location > span').text('location_on').css('color', '#ca4747');
 
+  $('counting').removeAttr('loading')
+  $('counting > span').text('favorite').css('color', '#ca4747')
+
   const socials = [
     {
       svg: `
@@ -260,9 +263,6 @@ function loadIcons() {
   reloadTippys();
 };
 
-const countSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(202, 71, 71)" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>`
-
-
 const countDownDate = new Date("May 5, 2023 17:00:00").getTime();
 
 function reloadTimer() {
@@ -277,8 +277,7 @@ function reloadTimer() {
 
   let timer = `${days}:${hours}:${minutes}:${seconds}`
 
-  $('counting > a').html(`<a target="_blank" rel="noopener noreferrer"><span>${countSvg} ${timer}</span>`);
-  $('counting > p').text(timer);
+  $('counting > a').text(`${timer}`);
 }
 
 let x = setInterval(function () {

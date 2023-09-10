@@ -472,6 +472,58 @@
   margin-right: 5px;
 }
 
+* body div.main content bottom ul li counting, * html div.main content bottom ul li counting {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  right: 2px;
+}
+
+* body div.main content bottom ul li counting[loading], * html div.main content bottom ul li counting[loading] {
+  right: -1px;
+}
+
+* body div.main content bottom ul li counting[loading] a, * html div.main content bottom ul li counting[loading] a {
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+  width: 140px;
+  border-radius: 7px;
+}
+
+* body div.main content bottom ul li counting a, * html div.main content bottom ul li counting a {
+  font-size: 15px;
+}
+
+* body div.main content bottom ul li counting[loading] span, * html div.main content bottom ul li counting[loading] span {
+  -webkit-animation: loading 1s infinite;
+          animation: loading 1s infinite;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  margin-right: 6px;
+}
+
+* body div.main content bottom ul li counting span, * html div.main content bottom ul li counting span {
+  font-size: 20px;
+  color: var(--secondary-color);
+  margin-right: 5px;
+}
+
 * body div.main content bottom ul li links, * html div.main content bottom ul li links {
   display: -webkit-box;
   display: -ms-flexbox;
