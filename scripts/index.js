@@ -97,7 +97,8 @@ const parseActivity = (data, activityData) => {
 
 const reloadUser = async (data) => {
   clearInterval(currentInterval);
-  $('div-img.avatar').css('background-image', `url(https://cdn.discordapp.com/avatars/${discordId}/${data.discord_user.avatar}.gif?size=512)`).removeAttr('loading');
+  //`url(https://cdn.discordapp.com/avatars/${discordId}/${data.discord_user.avatar}.gif?size=512)`
+  $('div-img.avatar').css('background-image', `url(https://avatars.githubusercontent.com/u/73614466?v=4)`).removeAttr('loading');
   $('status > p').text(parseStatus(data).text).removeAttr('loading').css('width', 'max-content');
   $('status > span').css('background-color', parseStatus(data).color);
   $('status').attr('tippy-interactive', 'true').attr('tippy', `
